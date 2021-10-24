@@ -11,7 +11,7 @@ const Home = props => {
     setAuth(au);
   }, [])
   const clicked = () => {
-    signInWithEmailAndPassword(auth, 'leonardo81@ui.ac.id', 'pokmnjiuhb').then((userCredential) => {
+    signInWithEmailAndPassword(auth, '','').then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
       console.log(userCredential);
@@ -25,7 +25,7 @@ const Home = props => {
   }
 
   const signup = () => {
-    createUserWithEmailAndPassword(auth, 'leonardo81@ui.ac.id', 'pokmnjiuhb').then((userCredential) => {
+    createUserWithEmailAndPassword(auth, '','').then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
       console.log(userCredential);

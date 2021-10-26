@@ -1,26 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getDataThunk } from "../../thunk";
+import { signin, signup } from "thunk/auth";
 
 const formSlice = createSlice({
   name: 'general',
   initialState: {
-    firstTime: true
+    showLogin: false
   },
   reducers: {
-    setFirstTime(state, action) {
-      state.firstTime = action.payload;
+    showLoginModal(state, action) {
+      console.log(action)
+      state.showLogin = action.payload;
     }
   },
   extraReducers: {
-    [getDataThunk.pending]: state => {
-      state.loading = true;
+    [signin.fulfilled]: (state, action) => {
+      if (action.payload.accessToken) state.showLogin = false;
     },
-    [getDataThunk.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.data = action.payload;
-    },
-    [getDataThunk.rejected]: state => {
-      state.loading = false;
+    [signup.fulfilled]: (state, action) => {
+      if (action.payload.accessToken) state.showLogin = false;
     },
   }
 })
@@ -28,6 +25,6 @@ const formSlice = createSlice({
 // Extract the action creators object and the reducer
 const { actions, reducer } = formSlice;
 // Extract and export each action creator by name
-export const { setFirstTime } = actions;
+export const { showLoginModal } = actions;
 // Export the reducer, either as a default or named export
 export default reducer;

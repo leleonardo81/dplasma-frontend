@@ -1,11 +1,13 @@
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { showLoginModal } from "store/general";
 import Home from './Home';
 
-// const mapStateToProps = state => ({
-// })
+const mapStateToProps = state => ({
+  token: state.auth.token
+})
 
-// const mapActionToProps = {
-// }
+const mapActionToProps = {
+  showLoginModal: () => showLoginModal(true)
+}
 
-// export default connect(mapStateToProps, mapActionToProps)(Home);
-export default Home;
+export default connect(mapStateToProps, mapActionToProps)(Home);

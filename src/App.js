@@ -8,8 +8,12 @@ import store, { history } from './store';
 import routes from './routes';
 import './App.css';
 import { ConnectedRouter } from 'connected-react-router';
-// import { PersistGate } from 'redux-persist/integration/react';
+import { PersistGate } from 'redux-persist/integration/react';
 import { initializeApp } from 'firebase/app';
+import AuthModal from 'components/AuthModal';
+import { persistor } from 'store/index';
+import NavBar from 'components/NavBar';
+import Container from '@material-ui/core/Container';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -22,18 +26,22 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-function App() {
+function App(props) {
   return (
     <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistor}> */}
+      <PersistGate loading={null} persistor={persistor}>
         <ConnectedRouter history={history}>
-          <Switch>
-            {routes.map(routeProps => (
-              <Route {...routeProps} key={routeProps.path} />
-            ))}
-          </Switch>
+          <AuthModal />
+          <NavBar {...props} />
+          <Container className="pt-36 md:pt-20">
+            <Switch>
+              {routes.map(routeProps => (
+                <Route {...routeProps} key={routeProps.path} />
+              ))}
+            </Switch>
+          </Container>
         </ConnectedRouter>
-      {/* </PersistGate> */}
+      </PersistGate>
     </Provider>
   );
 }

@@ -1,3 +1,4 @@
 import axios from 'axios';
+import { baseUrl } from './constant';
 
-export const getData = () => axios.get('/');
+export const submitAssesmentTest = data => axios.post(`${baseUrl}/assesment`, data);

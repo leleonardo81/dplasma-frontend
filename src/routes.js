@@ -1,3 +1,4 @@
+import Assesment from "views/Assesment";
 import Home from "./views/Home";
 
 export default [
@@ -6,4 +7,9 @@ export default [
     exact: true,
     component: Home,
   },
+  {
+    path: '/assesment',
+    exact: true,
+    component: Assesment,
+  }
 ]

@@ -15,14 +15,19 @@ const CustomTextField = withStyles({
         borderColor: '#ED7B84',
       },
     },
+    '& .MuiFilledInput-root': {
+      '&:after': {
+        borderColor: '#ED7B84',
+      }
+    },
     margin: '0.5rem'
   },
 })(MuiTextField);
 
-const TextField = (props) => 
+const TextField = ({variant, size, ...props}) => 
   <CustomTextField 
-    variant="outlined"
-    size="small"
+    variant={variant || "outlined"}
+    size={size ||"small"}
     {...props}
   />;
 

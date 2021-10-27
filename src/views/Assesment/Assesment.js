@@ -34,22 +34,24 @@ const Assesment = () => {
     console.log(data);
     setLoading(true);
     submitAssesmentTest(data).then(res=>{
-      console.log(res)
+      const { data } = res.data;
+      if (data.isEligible) alert('Anda berpotensi jadi pendonor');
+      else alert('Tidak');
     }).catch(err=>{
       console.error(err);
     }).finally(()=>{setLoading(false)});
   }
 
   return (
-    <div className="py-4">
-      <h1 className="text-red-500 text-4xl font-bold">Assesment Pendonor</h1>
-      <h2 className="mt-2 mb-8">Cari tahu apakah kamu berpotensi untuk mendonorkan plasma darahmu untuk pasien covid-19</h2>
+    <div className="py-4 my-8">
+      <h1 className="text-red-500 text-4xl font-extrabold px-20">Assesment Pendonor</h1>
+      <h2 className="mt-2 mb-16 px-20">Cari tahu apakah kamu berpotensi untuk mendonorkan plasma darahmu untuk pasien covid-19</h2>
       <div className="py-4 lg:grid lg:grid-cols-2">
         <div className="mb-8 px-20 md:px-32 lg:px-20">
           <p className="font-bold mb-2">Apakah kamu pernah positif covid-19? </p>
           <RadioGroup value={is_covid_survivor} onChange={e=>setIsCovidSurvivor(Boolean(e.target.value))}>
-            <FormControlLabel value="true" control={<Radio />} label={<span className="font-tema">Ya</span>} />
-            <FormControlLabel value="false" control={<Radio />} label={<span className="font-tema">Tidak</span>} />
+            <FormControlLabel value="1" control={<Radio />} label={<span className="font-tema">Ya</span>} />
+            <FormControlLabel value="" control={<Radio />} label={<span className="font-tema">Tidak</span>} />
           </RadioGroup>
         </div>
 
@@ -57,8 +59,8 @@ const Assesment = () => {
         <div className="mb-8 px-20 md:px-32 lg:px-20">
           <p className="font-bold mb-2">Bagaimana hasil tes covid-mu saat ini? </p>
           <RadioGroup value={negative_covid} onChange={e=>setNegativeCovid(Boolean(e.target.value))}>
-            <FormControlLabel value="false" control={<Radio />} label={<span className="font-tema">Positif</span>} />
-            <FormControlLabel value="true" control={<Radio />} label={<span className="font-tema">Negatif</span>} />
+            <FormControlLabel value="" control={<Radio />} label={<span className="font-tema">Positif</span>} />
+            <FormControlLabel value="1" control={<Radio />} label={<span className="font-tema">Negatif</span>} />
           </RadioGroup>
         </div>
         
@@ -110,8 +112,8 @@ const Assesment = () => {
         <div className="mb-8 px-20 md:px-32 lg:px-20">
           <p className="font-bold mb-2">Apakah kamu pernah hamil? </p>
           <RadioGroup value={have_pregnant} onChange={e=>setHavePregnant(Boolean(e.target.value))}>
-            <FormControlLabel value="true" control={<Radio />} label={<span className="font-tema">Ya, pernah</span>} />
-            <FormControlLabel value="false" control={<Radio />} label={<span className="font-tema">Tidak</span>} />
+            <FormControlLabel value="1" control={<Radio />} label={<span className="font-tema">Ya, pernah</span>} />
+            <FormControlLabel value="" control={<Radio />} label={<span className="font-tema">Tidak</span>} />
           </RadioGroup>
         </div>
         }
@@ -119,16 +121,16 @@ const Assesment = () => {
         <div className="mb-8 px-20 md:px-32 lg:px-20">
           <p className="font-bold mb-2">Apakah kamu memiliki riwayat penyakit kronis? </p>
           <RadioGroup value={cronic_disease} onChange={e=>setCronicDisease(Boolean(e.target.value))}>
-            <FormControlLabel value="true" control={<Radio />} label={<span className="font-tema">Ya</span>} />
-            <FormControlLabel value="false" control={<Radio />} label={<span className="font-tema">Tidak</span>} />
+            <FormControlLabel value="1" control={<Radio />} label={<span className="font-tema">Ya</span>} />
+            <FormControlLabel value="" control={<Radio />} label={<span className="font-tema">Tidak</span>} />
           </RadioGroup>
         </div>
 
         <div className="mb-8 px-20 md:px-32 lg:px-20">
           <p className="font-bold mb-2">Apakah kamu pernah menerima transfusi darah? </p>
           <RadioGroup value={transfused_record} onChange={e=>setTransfusedRecord(Boolean(e.target.value))}>
-            <FormControlLabel value="true" control={<Radio />} label={<span className="font-tema">Ya</span>} />
-            <FormControlLabel value="false" control={<Radio />} label={<span className="font-tema">Tidak</span>} />
+            <FormControlLabel value="1" control={<Radio />} label={<span className="font-tema">Ya</span>} />
+            <FormControlLabel value="" control={<Radio />} label={<span className="font-tema">Tidak</span>} />
           </RadioGroup>
         </div>
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,6 +13,7 @@ import {
 import MenuItem from '@material-ui/core/MenuItem';
 import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom';
+import TextField from 'components/TextField/index';
 // import Container from '@material-ui/core/Container';
 
 
@@ -31,11 +32,21 @@ function NavBar(props) {
     showLoginModal,
     logout
   } = props;
+
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({ target: window ? window() : undefined });
+  console.log(window)
+  const trigger = useScrollTrigger({ target: undefined });
   // const classes = useStyles();
+
+  const [server] = useState(JSON.parse(localStorage.getItem('server')));
+  console.log(server)
+  const setServer = (val) => {
+    localStorage.setItem('server', val);
+    console.log(window)
+    window.location.reload();
+  }
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -45,9 +56,20 @@ function NavBar(props) {
           {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton> */}
-          <h1 className="flex-grow text-3xl text-red-500 font-extrabold text-center md:text-left">
-            dPlasma
-          </h1>
+          <div className="flex-grow md:text-left text-left-center flex items-center">
+            <h1 className="text-3xl text-red-500 font-extrabold">
+              <Link to="/">dPlasma</Link>
+            </h1>
+            {/* <Switch checked={server} onChange={toggleServer} name="server" /> */}
+            <TextField 
+              select
+              value={server}
+              onChange={e=>setServer(e.target.value)}
+            >
+              <MenuItem key="1" value={1}><p className="font-tema text-red-500 text-sm font-bold">Monolith</p></MenuItem>
+              <MenuItem key="3" value={3}><p className="font-tema text-red-500 text-sm font-bold">Serverless</p></MenuItem>
+            </TextField>
+          </div>
           {isLoggedIn ? 
             <div className="flex items-center">
               <Link to="/request"><Button><AddIcon />&nbsp;Request Donor</Button></Link>

@@ -1,17 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { setupAuthToken } from "api/config";
 import { signin, signup } from "thunk/auth";
 
 const formSlice = createSlice({
   name: 'auth',
   initialState: {
     token: null,
+    user: null,
     loading: false
   },
   reducers: {
     logout(state) {
       state.token = null;
-      window.location = '/';
-    }
+      state.user = null;
+      setTimeout(()=>setupAuthToken(null), 500);
+    },
   },
   extraReducers: {
     [signin.pending]: state => {
@@ -19,8 +22,9 @@ const formSlice = createSlice({
     },
     [signin.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
       state.token = action.payload.accessToken;
+      state.user = action.payload.user;
+      setupAuthToken(action.payload.accessToken);
     },
     [signin.rejected]: state => {
       state.loading = false;
@@ -30,8 +34,9 @@ const formSlice = createSlice({
     },
     [signup.fulfilled]: (state, action) => {
       state.loading = false;
-      console.log(action.payload);
       state.token = action.payload.accessToken;
+      state.user = action.payload.user;
+      setupAuthToken(action.payload.accessToken);
     },
     [signup.rejected]: state => {
       state.loading = false;

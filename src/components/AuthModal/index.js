@@ -11,6 +11,6 @@ const mapStateToProps = state => ({
 const mapActionToProps = {
   setShow: showLoginModal,
   signin: (auth,email,password)=>signin({auth,email,password}),
-  signup: (auth,email,password)=>signup({auth,email,password}),
+  signup: (data)=>signup(data),
 }
 export default connect(mapStateToProps, mapActionToProps)(AuthModal);

@@ -12,6 +12,9 @@ const AuthModal = ({open, setShow, loading, signin, signup}) => {
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [signUpMode, setSignUpMode] = useState(false);
+  const [name, setName] = useState('');
+  const [nik, setNik] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   useEffect(()=> {
       const au = getAuth();
@@ -61,6 +64,13 @@ const AuthModal = ({open, setShow, loading, signin, signup}) => {
       <DialogContent>
         <div className="text-center p-8 flex flex-col lg:w-3/4 m-auto">
           <h2 className="font-bold text-xl mb-6">{signUpMode ? 'SignUp':'Login'}</h2>
+          {signUpMode && 
+            <TextField
+              label="Nama"
+              value={name}
+              onChange={e=>setName(e.target.value)}
+            />
+          }
           <TextField
             label="Email"
             type="email"
@@ -68,6 +78,22 @@ const AuthModal = ({open, setShow, loading, signin, signup}) => {
             value={email}
             onChange={e=>setEmail(e.target.value)}
           />
+          {signUpMode && 
+            <TextField
+              label="NIK"
+              value={nik}
+              type="number"
+              onChange={e=>setNik(String(e.target.value))}
+            />
+          }
+          {signUpMode && 
+            <TextField
+              label="Nomor Telepon"
+              value={phoneNumber}
+              type="number"
+              onChange={e=>setPhoneNumber(String(e.target.value))}
+            />
+          }
           <TextField
             label="Password"
             type="password"
@@ -85,7 +111,9 @@ const AuthModal = ({open, setShow, loading, signin, signup}) => {
           }
           { signUpMode ? 
             <div className="mt-4 w-full flex flex-col">
-              <Button disabled={loading || passwordConfirm !== password || !password || !email} onClick={()=>signup(auth, email, password)}>SignUp</Button>
+              <Button 
+                disabled={loading || passwordConfirm !== password || !password || !email || !phoneNumber || !name || !nik} 
+                onClick={()=>signup({auth, email, password, name, nik, phoneNumber})}>SignUp</Button>
               <p className="mt-2 mb-0">Sudah punya akun?&nbsp;
                 <span className="text-red-500 cursor-pointer hover:underline" onClick={()=>setSignUpMode(false)}>Login</span>
               </p>

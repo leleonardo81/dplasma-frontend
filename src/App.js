@@ -26,13 +26,13 @@ const firebaseConfig = {
 
 initializeApp(firebaseConfig);
 
-function App(props) {
+function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ConnectedRouter history={history}>
           <AuthModal />
-          <NavBar {...props} />
+          <NavBar window={window} />
           <Container className="pt-36 md:pt-20">
             <Switch>
               {routes.map(routeProps => (

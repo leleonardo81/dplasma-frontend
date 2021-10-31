@@ -1,4 +1,5 @@
 import Assesment from "views/Assesment";
+import RequestDonor from "views/RequestDonor";
 import Home from "./views/Home";
 
 export default [
@@ -11,5 +12,10 @@ export default [
     path: '/assesment',
     exact: true,
     component: Assesment,
+  },
+  {
+    path: '/request',
+    exact: true,
+    component: RequestDonor,
   }
 ]

@@ -1,5 +1,5 @@
 import Assesment from "views/Assesment";
-import DonorRequest from "views/DonorRequest/index";
+import DonorRequest from "views/DonorRequest";
 import RequestDonor from "views/RequestDonor";
 import Home from "./views/Home";
 

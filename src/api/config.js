@@ -14,9 +14,10 @@ export const setupAuthTokenMiddleware = store => next => action => {
     }
     axios.interceptors.response.use(null, err=>{
       if (err.response && err.response.status === 401) {
-        delete axios.defaults.headers.common['Authorization']
+        delete axios.defaults.headers.common['Authorization'];
         store.dispatch(dispatch=>{
-          dispatch(logout);
+          console.log("Unauthorized logging out")
+          dispatch(logout());
         })
       }
       return Promise.reject(err);

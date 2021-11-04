@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { getListDonorRequest } from 'api/index';
 import { CircularProgress } from '@material-ui/core/index';
 
-const Home = () => {
+const Home = ({push}) => {
   const [listDonorRequest, setListDonor] = useState([]);
   const [loading, setLoading] = useState({
     donorRequest: false
@@ -35,7 +35,7 @@ const Home = () => {
           {loading.donorRequest && <CircularProgress size={40} color="secondary" />}
         <div className="flex">
           {listDonorRequest.map(dr=>(
-            <div className="cursor-pointer p-4 rounded-lg bg-gray-100">
+            <div className="cursor-pointer p-4 rounded-lg bg-gray-100" onClick={()=>push(`/donor/${dr.id}`)}>
               <p className="text-lg font-bold">Golongan darah {dr.bloodtype}</p>
               <p>{dr.description}</p>
             </div>

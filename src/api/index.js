@@ -14,6 +14,10 @@ export const getListDonorRequest = (query) => {
   return axios.get(`${baseUrl}/donor-request${queryMap}`);
 };
 
+export const getDetailDonorRequest = id => {
+  return axios.get(`${baseUrl}/donor-request/${id}`);
+};
+
 export const getRS = (query) => {
   const queryMap = buildQuery(query);
   return axios.get(`${baseUrl}/rumah-sakit${queryMap}`);

@@ -13,7 +13,9 @@ const formSlice = createSlice({
     logout(state) {
       state.token = null;
       state.user = null;
-      setTimeout(()=>setupAuthToken(null), 500);
+      if (state.token !== null) {
+        setTimeout(()=>setupAuthToken(null), 500);
+      }
     },
   },
   extraReducers: {

@@ -67,6 +67,7 @@ function NavBar(props) {
               onChange={e=>setServer(e.target.value)}
             >
               <MenuItem key="1" value={1}><p className="font-tema text-red-500 text-sm font-bold">Monolith</p></MenuItem>
+              <MenuItem key="2" value={2}><p className="font-tema text-red-500 text-sm font-bold">Hybrid</p></MenuItem>
               <MenuItem key="3" value={3}><p className="font-tema text-red-500 text-sm font-bold">Serverless</p></MenuItem>
             </TextField>
           </div>

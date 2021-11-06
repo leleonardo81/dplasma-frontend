@@ -34,7 +34,7 @@ const Home = ({push}) => {
         <h2 className="text-2xl lg:mr-80 mb-4">Bantu donorkan plasma darah-mu ke mereka yang membutuhkan</h2>
           {loading.donorRequest && <CircularProgress size={40} color="secondary" />}
         <div className="flex">
-          {listDonorRequest.map(dr=>(
+          {listDonorRequest && listDonorRequest.map(dr=>(
             <div className="cursor-pointer p-4 rounded-lg bg-gray-100" onClick={()=>push(`/donor/${dr.id}`)}>
               <p className="text-lg font-bold">Golongan darah {dr.bloodtype}</p>
               <p>{dr.description}</p>

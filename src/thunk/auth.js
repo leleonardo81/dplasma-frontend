@@ -24,7 +24,12 @@ export const signin = createAsyncThunk('auth/signin', async ({auth, email, passw
 
 export const signup = createAsyncThunk('auth/signup', async ({auth, email, password, name, nik, phoneNumber}) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    let userCredential;
+    try {
+      userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    } catch {
+      userCredential = await signInWithEmailAndPassword(auth, email, password);
+    }
       // Signed in 
       const user = userCredential.user;
       const {accessToken} = user;

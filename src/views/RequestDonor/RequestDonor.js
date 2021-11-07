@@ -44,6 +44,8 @@ const RequestDonor = ({user}) => {
 
   return (
     <div className="p-8">
+      <h1 className="text-3xl font-bold mb-2">Request Donor</h1>
+      <h1 className="text-xl mb-6">Ajukan permohonan donor, dan segera dapatkan pendonor</h1>
       <div className="w-1/3">
         <TextField
           label="Usia pasien"

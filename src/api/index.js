@@ -22,3 +22,14 @@ export const getRS = (query) => {
   const queryMap = buildQuery(query);
   return axios.get(`${baseUrl}/rumah-sakit${queryMap}`);
 };
+
+export const createRS = (data) => {
+  return axios.post(`${baseUrl}/rumah-sakit`, data);
+}
+
+export const editProfile = data => {
+  return axios.post(`${baseUrl}/profil`, data);
+} 
+export const getProfile = data => {
+  return axios.get(`${baseUrl}/profil`);
+}

@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { setupAuthToken } from "api/config";
+import { updateProfile } from "thunk/profile";
 import { signin, signup } from "thunk/auth";
 
 const formSlice = createSlice({
@@ -43,6 +44,9 @@ const formSlice = createSlice({
     [signup.rejected]: state => {
       state.loading = false;
     },
+    [updateProfile.fulfilled]: (state, action) =>{
+      state.user = action.payload.data;
+    }
   }
 })
 

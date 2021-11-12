@@ -33,11 +33,13 @@ const Home = ({push}) => {
         <h2 className="mt-36 text-4xl lg:mr-80 mb-4 font-bold">Orang-orang ini butuh bantuan-mu</h2>
         <h2 className="text-2xl lg:mr-80 mb-4">Bantu donorkan plasma darah-mu ke mereka yang membutuhkan</h2>
           {loading.donorRequest && <CircularProgress size={40} color="secondary" />}
-        <div className="flex">
+        <div className="flex flex-wrap">
           {listDonorRequest && listDonorRequest.map(dr=>(
-            <div className="cursor-pointer p-4 rounded-lg bg-gray-100" onClick={()=>push(`/donor/${dr.id}`)}>
-              <p className="text-lg font-bold">Golongan darah {dr.bloodtype}</p>
-              <p>{dr.description}</p>
+            <div className="p-4 w-1/2 sm:w-1/3 lg:w-1/4">
+              <div className="cursor-pointer p-4 rounded-lg bg-gray-100" onClick={()=>push(`/donor/${dr.id}`)}>
+                <p className="text-lg font-bold">Golongan darah {dr.bloodtype}</p>
+                <p>{dr.description}</p>
+              </div>
             </div>
           ))}
         </div>

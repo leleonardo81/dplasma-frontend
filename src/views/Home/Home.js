@@ -17,7 +17,7 @@ const Home = ({push}) => {
     setLoadingDR(true);
     getListDonorRequest().then(res=>{
       console.log(res)
-      setListDonor(res.data.data)
+      setListDonor(res.data.data.rows)
     }).catch(err=>{
       console.error(err);
     }).finally(()=>setLoadingDR(false));

@@ -18,43 +18,11 @@ const AuthModal = ({open, setShow, loading, signin, signup}) => {
 
   useEffect(()=> {
       const au = getAuth();
-      // console.log(au);
       setAuth(au);
       setSignUpMode(false);
       setPassword('');
       setPasswordConfirm('');
   }, [open]);
-
-  // const signin = () => {
-  //     signInWithEmailAndPassword(auth, '','').then((userCredential) => {
-  //       // Signed in 
-  //       const user = userCredential.user;
-  //       console.log(userCredential);
-  //       setToken(user.accessToken)
-  //       // ...
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //       console.log(errorCode, errorMessage);
-  //     });
-  //   }
-  
-  // const signup = () => {
-  //   createUserWithEmailAndPassword(auth, '','').then((userCredential) => {
-  //     // Signed in 
-  //     const user = userCredential.user;
-  //     console.log(userCredential);
-  //     setToken(user.accessToken)
-  //     // ...
-  //   })
-  //   .catch((error) => {
-  //     const errorCode = error.code;
-  //     const errorMessage = error.message;
-  //     console.log(errorCode, errorMessage);
-  //     // ..
-  //   });
-  // }
   
   return (
     <Dialog open={open} onClose={()=>setShow(false)} maxWidth="sm" fullWidth>
